@@ -52,7 +52,6 @@ namespace Presentation.Controllers
                 if (ModelState.IsValid)
                 {
                     _userService.Create(dto);
-                    ViewBag.Success = "Registration is completed successfully!";
                     return RedirectToAction("SignIn", "Login");
                 }
                 else
