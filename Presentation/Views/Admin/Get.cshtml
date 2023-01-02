@@ -1,0 +1,21 @@
+﻿@model StudentDTO
+
+@{
+    ViewData["Title"] = "Details about " + Model.FullName;
+}
+
+<h1>Details about @Model.FullName</h1>
+<br />
+
+<div class="card text-bg-light mb-3" style="max-width: 18rem;">
+    <div class="card-header">Details</div>
+    <div class="card-body">
+        <h5 class="card-title">@Model.FullName</h5>
+        <ul typeof="circle">
+            <li>Major: @Model.Major</li>
+            <li>Yearly payment: @Model.YearlyPayment AZN</li>
+            <li>Payment for month: @Model.PaymentForMonth AZN</li>
+            <li>Remainder: @Model.Remainder AZN</li>
+        </ul>
+    </div>
+</div>

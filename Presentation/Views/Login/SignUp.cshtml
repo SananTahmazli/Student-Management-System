@@ -1,0 +1,34 @@
+﻿@model UserDTO
+
+@{
+    ViewData["Title"] = "Sign Up";
+}
+
+<partial name="~/Views/Shared/Messages.cshtml" />
+<h1>Sign up now!</h1>
+<br />
+
+<form method="post" asp-controller="Login" asp-action="SignUp">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="FullName" asp-for="FullName" placeholder="name@example.com" />
+        <label for="FullName">Full Name</label>
+        <span style="color: red" asp-validation-for="FullName"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="Username" asp-for="Username" placeholder="name@example.com" />
+        <label for="Username">Username</label>
+        <span style="color: red" asp-validation-for="Username"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="Password" asp-for="Password" placeholder="name@example.com" />
+        <label for="Major">Password</label>
+        <span style="color: red" asp-validation-for="Password"></span>
+    </div>
+
+    <input type="submit" class="btn btn-outline-primary" value="Sign Up" />
+    &nbsp;
+    <span>Already have an account?</span>
+    <a style="text-decoration:none" asp-controller="Login" asp-action="SignIn">Sign In</a>
+</form>

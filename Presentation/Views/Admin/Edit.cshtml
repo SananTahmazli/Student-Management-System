@@ -1,0 +1,47 @@
+﻿@model StudentDTO
+
+@{
+    ViewData["Title"] = "Edit " + Model.FullName + "'s data";
+}
+
+<partial name="~/Views/Shared/Messages.cshtml" />
+<h1>Edit @Model.FullName's data</h1>
+<br />
+
+<form method="post" asp-controller="Admin" asp-action="EditDTO" asp-route-id="@Model.Id">
+    <div class="form-floating mb-3">
+        <input type="hidden" class="form-control" id="Id" asp-for="Id" value="@Model.Id" />
+        <label for="Id">ID</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="FullName" asp-for="FullName" value="@Model.FullName" />
+        <label for="FullName">Full name</label>
+        <span style="color: red" asp-validation-for="FullName"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="Major" asp-for="Major" value="@Model.Major" />
+        <label for="Major">Major</label>
+        <span style="color: red" asp-validation-for="Major"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="number" min="1000" max="3000" class="form-control" id="YearlyPayment" asp-for="YearlyPayment" value="@Model.YearlyPayment" />
+        <label for="YearlyPayment">Yearly payment</label>
+        <span style="color: red" asp-validation-for="YearlyPayment"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="number" min="100" max="3000" class="form-control" id="PaymentForMonth" asp-for="PaymentForMonth" value="@Model.PaymentForMonth" />
+        <label for="PaymentForMonth">Payment for month</label>
+        <span style="color: red" asp-validation-for="PaymentForMonth"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input disabled type="number" class="form-control" id="Remainder" asp-for="Remainder" value="@Model.Remainder" />
+        <label for="Remainder">Remainder</label>
+    </div>
+
+    <input type="submit" class="btn btn-outline-success" value="Save" />
+</form>

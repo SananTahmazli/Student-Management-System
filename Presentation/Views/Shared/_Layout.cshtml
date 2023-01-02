@@ -1,0 +1,75 @@
+﻿@using Helpers;
+@using System.Globalization;
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content="Student Management System" />
+        <meta name="author" content="Sanan Tahmazli" />
+        <meta name="keywords" content="Student Management System" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - ASMU</title>
+        <link href="~/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+        <link href="~/twitter-bootstrap/css/bootstrap-grid.css" rel="stylesheet" />
+        <link href="~/twitter-bootstrap/css/bootstrap-reboot.css" rel="stylesheet" />
+        <link href="~/twitter-bootstrap/css/bootstrap-utilities.css" rel="stylesheet" />
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">ASMU</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-controller="Home" asp-action="Home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-controller="Home" asp-action="About">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-controller="Home" asp-action="ContactUs">Contact Us</a>
+                        </li>
+                    </ul>
+
+                    @{
+                        var isAuth = Context.User.Identity.IsAuthenticated;
+                    }
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a style="display:@((isAuth)? "block" :"none")" class="nav-link active" href="#">
+                                @CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Context?.User?.FindFirst(x=>x.Type=="Username")?.Value ?? "").ToLower()
+                            </a>
+                        </li>
+
+                        @{
+                            var isAdmin = Context.User.IsInRole(RoleKeywords.AdminRole);
+
+                            <a style="display:@((isAdmin)? "block" :"none")" class="btn btn-outline-danger"
+                                asp-controller="Admin" asp-action="GetAll">Admin Panel</a>
+                        }
+
+                        <li class="nav-item">
+                            <a style="display:@((isAuth)? "block" :"none"); color: red" class="nav-link active" asp-controller="Login" asp-action="SignOut">
+                                Logout
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a style="display:@((isAuth)? "none" :"block")" class="nav-link active" asp-controller="Login" asp-action="SignIn">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <br />
+            @RenderBody()
+        </div>
+        <script src="~/twitter-bootstrap/js/bootstrap.js"></script>
+    </body>
+</html>

@@ -1,0 +1,43 @@
+﻿@model StudentDTO
+
+@{
+    ViewData["Title"] = "Remove " + Model.FullName + "'s data";
+}
+
+<h1>Remove @Model.FullName's data</h1>
+<h3>Are you sure?</h3>
+<br />
+
+<form method="post" asp-controller="Admin" asp-action="RemoveDTO" asp-route-id="@Model.Id">
+    <div class="form-floating mb-3">
+        <input type="hidden" class="form-control" id="Id" asp-for="Id" value="@Model.Id" />
+        <label for="FullName">ID</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input disabled type="text" class="form-control" id="FullName" asp-for="FullName" value="@Model.FullName" />
+        <label for="FullName">Full name</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input disabled type="text" class="form-control" id="Major" asp-for="Major" value="@Model.Major" />
+        <label for="Major">Major</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input disabled type="number" min="1500" max="3000" class="form-control" id="YearlyPayment" asp-for="YearlyPayment" value="@Model.YearlyPayment" />
+        <label for="YearlyPayment">Yearly payment</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input disabled type="number" class="form-control" id="PaymentForMonth" asp-for="PaymentForMonth" value="@Model.PaymentForMonth" />
+        <label for="PaymentForMonth">PaymentForMonth</label>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input disabled type="number" class="form-control" id="Remainder" asp-for="Remainder" value="@Model.Remainder" />
+        <label for="Remainder">Remainder</label>
+    </div>
+
+    <input type="submit" class="btn btn-outline-danger" value="Delete" />
+</form>

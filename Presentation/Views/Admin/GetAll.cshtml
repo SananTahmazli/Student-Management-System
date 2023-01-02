@@ -1,0 +1,44 @@
+﻿@model IEnumerable<StudentDTO>
+
+@{
+    ViewData["Title"] = "Our students";
+}
+
+<h1>Our students</h1>
+<a class="btn btn-outline-primary" asp-controller="Admin" asp-action="Add">Add</a>
+<br />
+<br />
+<table class="table">
+    <thead class="table-light">
+        <tr>
+            <th>Full name</th>
+            <th>Major</th>
+            <th>Yearly payment (AZN)</th>
+            <th>Payment for month (AZN)</th>
+            <th>Remainder (AZN)</th>
+            <th rowspan="3">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var student in Model)
+        {
+            <tr>
+                <td>@student.FullName</td>
+                <td>@student.Major</td>
+                <td>@student.YearlyPayment</td>
+                <td>@student.PaymentForMonth</td>
+                <td>@student.Remainder</td>
+                <td>
+                    <a style="color:green; text-decoration:none" asp-controller="Admin" asp-action="Edit" 
+                        asp-route-id="@student.Id">Edit</a>
+                    &nbsp;
+                    <a style="color:red; text-decoration:none" asp-controller="Admin" asp-action="Remove"
+                        asp-route-id="@student.Id">Remove</a>
+                    &nbsp;
+                    <a style="color:teal; text-decoration:none" asp-controller="Admin" asp-action="Get"
+                        asp-route-id="@student.Id">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

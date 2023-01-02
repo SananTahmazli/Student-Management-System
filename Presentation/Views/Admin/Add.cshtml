@@ -1,0 +1,39 @@
+﻿@model StudentDTO
+
+@{
+    ViewData["Title"] = "Add new student";
+}
+
+<partial name="~/Views/Shared/Messages.cshtml" />
+<h1>Add new student</h1>
+<br />
+
+<form method="post" asp-controller="Admin" asp-action="Add">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="FullName" asp-for="FullName" placeholder="name@example.com" />
+        <label for="FullName">Full name</label>
+        <span style="color: red" asp-validation-for="FullName"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="Major" asp-for="Major" placeholder="name@example.com" />
+        <label for="Major">Major</label>
+        <span style="color: red" asp-validation-for="Major"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="number" min="1000" max="3000" class="form-control" id="YearlyPayment"
+               asp-for="YearlyPayment" placeholder="name@example.com" />
+        <label for="YearlyPayment">Yearly payment</label>
+        <span style="color: red" asp-validation-for="YearlyPayment"></span>
+    </div>
+
+    <div class="form-floating mb-3">
+        <input type="number" min="100" max="3000" class="form-control" id="PaymentForMonth"
+               asp-for="PaymentForMonth" placeholder="name@example.com" />
+        <label for="PaymentForMonth">Payment for month</label>
+        <span style="color: red" asp-validation-for="PaymentForMonth"></span>
+    </div>
+
+    <input type="submit" class="btn btn-outline-primary" value="Submit" />
+</form>
