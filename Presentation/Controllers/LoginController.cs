@@ -31,9 +31,9 @@ namespace Presentation.Controllers
                 Authenticate(dto);
                 return RedirectToAction("Home", "Home");
             }
-            catch (Exception exc)
+            catch (Exception ex)
             {
-                ViewBag.Error = exc.Message;
+                ViewBag.Error = ex.Message;
                 return View();
             }
         }
